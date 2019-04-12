@@ -20,5 +20,21 @@ if (spotifyThisSong === "spotify-this-song" && mySong) {
 }
 
 function getSong() {
-    spotify.search({ type: "track", query: mySong}, )
+    spotify.search({ type: "track", query: mySong}, function(err, data) {
+        if (err) {
+            return console.log("It's Slippery In Here... " + err);
+        }
+
+        console.log(JSON.stringify(data, null, 2));
+    });
+}
+
+function theSign() {
+    spotify.search({ type: "track", query: "The Sign"}, function(err, data) {
+        if (err) {
+            return console.log("Error occurred: " + err);
+        }
+
+        console.log(JSON.stringify(data, null, 2));
+    });
 }
