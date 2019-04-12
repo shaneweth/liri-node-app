@@ -1,14 +1,24 @@
 require("dotenv").config();
 
-// Code to import the "keys.js" file in order to store the var. 
+const keys = require("./keys.js");
 
-var keys = require("./keys.js");
+var Spotify = require("node-spotify-api");
 
+var spotify = new Spotify({
+    id: process.env.SPOTIFY_ID,
+    secret: process.env.SPOTIFY_SECRET
+});
 
-const a = process.argv[2];
-const b = process.argv[3];
+var spotifyThisSong = process.argv[2];
+var mySong = process.argv[3];
 
-var spotify = new Spotify(keys.spotify);
+if (spotifyThisSong === "spotify-this-song" && mySong) {
+    console.log("Coming up... Hold your horses.")
+    getSong();
+} else if (spotifyThisSong === "spotify-this-song" && mySong != true) {
+    theSign();
+}
 
-
-console.log(spotify);
+function getSong() {
+    spotify.search({ type: "track", query: mySong}, )
+}
