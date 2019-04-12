@@ -25,7 +25,7 @@ function getSong() {
             return console.log("It's Slippery In Here... " + err);
         }
 
-        console.log(JSON.stringify(data, null, 2));
+        console.log(JSON.stringify(spotify.data.name, null, 2));
     });
 }
 
