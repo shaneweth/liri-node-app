@@ -12,7 +12,7 @@ var spotify = new Spotify({
 var spotifyThisSong = process.argv[2];
 var mySong = process.argv[3];
 
-var tracks = [];
+// var tracks = [];
 
 
 if (spotifyThisSong === "spotify-this-song" && mySong) {
@@ -23,12 +23,18 @@ if (spotifyThisSong === "spotify-this-song" && mySong) {
 }
 
 function getSong() {
-    spotify.search({ type: "track", query: mySong}, function(err, data) {
-        if (err) {
-            return console.log("It's Slippery In Here... " + err);
-        }
-        console.log(JSON.stringify(data, null, 6));
-    });
+
+
+    spotify .search({ type: "track", query: mySong, limit: 5 })
+            .then((...response) => {
+                // response = response.map(results => results.tracks.items[0].name + results.tracks.items[0].album);
+                response = response.map(res => res.tracks.items);
+                console.log(response);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+
 }
 
 function theSign() {
