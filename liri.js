@@ -12,6 +12,9 @@ var spotify = new Spotify({
 var spotifyThisSong = process.argv[2];
 var mySong = process.argv[3];
 
+var tracks = [];
+
+
 if (spotifyThisSong === "spotify-this-song" && mySong) {
     console.log("Coming up... Hold your horses.")
     getSong();
@@ -24,8 +27,7 @@ function getSong() {
         if (err) {
             return console.log("It's Slippery In Here... " + err);
         }
-
-        console.log(JSON.stringify(spotify.data.name, null, 2));
+        console.log(JSON.stringify(data, null, 6));
     });
 }
 
@@ -35,6 +37,6 @@ function theSign() {
             return console.log("Error occurred: " + err);
         }
 
-        console.log(JSON.stringify(data, null, 2));
+        console.log(JSON.parse(data, null, 2));
     });
 }
