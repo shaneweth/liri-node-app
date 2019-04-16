@@ -1,12 +1,8 @@
-const keys = require("./keys.js");
-
 const axios = require("axios");
-
-
 
 const movieArg = process.argv[2];
 
-myMovie = process.argv.splice(3).join(" ");
+myMovie = process.argv.slice(3).join(" ");
 
 
 if (movieArg === "movie-this" && myMovie) {

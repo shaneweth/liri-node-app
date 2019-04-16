@@ -5,7 +5,7 @@ const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
 const spotifyThisSong = process.argv[2];
 
-mySong = process.argv.splice(3).join(" ");
+mySong = process.argv.slice(3).join(" ");
 
 
 if (spotifyThisSong === "spotify-this-song" && mySong) {
