@@ -26,7 +26,7 @@ switch (searchType) {
         break;
 
     case "movie-this":
-        console.log("This is a funny joke about movies.");
+        console.log("Pop that popcorn... But NOT in a WORK MICROWAVE. \nPeople have to live with your choices.");
         getMovie();
         break;
 }
@@ -65,23 +65,23 @@ function getSong() {
 
 }
 
-function theSign() {
-    spotify.search({ type: "track", query: "The Sign" }, function (err, data) {
-        if (err) {
-            return console.log("Error occurred: " + err);
-        }
+// function theSign() {
+//     spotify.search({ type: "track", query: "The Sign" }, function (err, data) {
+//         if (err) {
+//             return console.log("Error occurred: " + err);
+//         }
 
-        console.log(JSON.parse(data, null, 2));
-    });
-}
+//         console.log(JSON.parse(data, null, 2));
+//     });
+// }
 
 //*************************************************** */
 // getMovie Function
 
 function getMovie() {
 
-    axios   .get("http://www.omdbapi.com/?t=" + myMovie + "&apikey=trilogy")
-            .then(function (response) {
+    axios.get("http://www.omdbapi.com/?t=" + searchTerm + "&apikey=trilogy")
+        .then(function (response) {
 
             let movTitle = response.data.Title;
             let movYear = response.data.Year;
@@ -109,20 +109,24 @@ function getMovie() {
             console.log("  ");
 
         })
-
+        .catch(function (err) {
+            console.log(err);
+        });
 }
 
 // *****************************************************************************
 // getShow function
 
-var queryURL = "https://rest.bandsintown.com/artists/" + myArtist + "/events?app_id=codingbootcamp";
 
 function getShow() {
 
-    axios.get(queryURL)
+    var queryURL = "https://rest.bandsintown.com/artists/" + searchTerm + "/events?app_id=codingbootcamp";
+
+    axios
+        .get(queryURL)
         .then(function (response) {
 
-            console.log("|^|****************|  " + myArtist + "  |****************|^|")
+            console.log("|^|****************|  " + searchTerm + "  |****************|^|")
 
             for (x = 0; x < response.data.length; x++) {
 
@@ -139,8 +143,11 @@ function getShow() {
                 console.log(resCity);
                 console.log(resReg);
                 console.log(formTime);
+                console.log("-----------------------------------------------")
                 console.log("***********************************************")
-
             }
         })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
