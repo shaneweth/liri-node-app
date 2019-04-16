@@ -1,2 +1,7 @@
-# liri-node-app
-Interface for interacting with various db's. 
+# LIRI
+- App that uses NODE.js to call material from API's.
+
+- Examples:
+    * spotify-this
+
+    ![]()
